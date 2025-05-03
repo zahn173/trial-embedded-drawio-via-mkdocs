@@ -1,0 +1,41 @@
+site_name: Trial Embedded Drawio via MkDocs
+site_description: MkDocsでのdrawio埋め込みのトライアル
+site_author: Tomofumi Takayama
+
+theme:
+  name: material
+  language: ja
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - toc.integrate
+    - content.code.copy
+    - navigation.instant
+    - toc.follow
+
+repo_name: trial-embedded-drawio-via-mkdocs
+repo_url: https://github.com/your-username/trial-embedded-drawio-via-mkdocs
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - toc
+
+nav:
+  - ホーム: index.md
+  - テスト: test.md
+
+plugins:
+  - search
+

@@ -17,11 +17,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. チェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          
+      # 2. キャッシュ
       - name: Cache pip
         uses: actions/cache@v3
         with:
@@ -30,6 +32,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
+      # 3. Python環境をセットアップ
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -40,16 +43,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # 4. MkDocsのビルド
       - name: Build MkDocs site
         run: mkdocs build --strict
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload MkDocs build artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: docs/site
-
+      # 5. GitHub Pagesにデプロイ
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pages/test  # デプロイ先のブランチを指定
+          publish_dir: ./docs/site # ビルド成果物のディレクトリを指定
+          force_orphan: true # ブランチの履歴を保持しない(都度作り直し)

@@ -7,6 +7,7 @@ on:
     paths:
       - 'docs/src/**'
       - '.github/workflows/deploy-mkdocs.yml'
+      - 'mkdocs.yml'
 
 permissions:
   contents: write
@@ -22,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
+
       # 2. キャッシュ
       - name: Cache pip
         uses: actions/cache@v3

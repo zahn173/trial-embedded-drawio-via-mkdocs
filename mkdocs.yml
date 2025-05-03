@@ -1,6 +1,8 @@
 site_name: Trial Embedded Drawio via MkDocs
 site_description: MkDocsでのdrawio埋め込みのトライアル
 site_author: Tomofumi Takayama
+docs_dir: docs/src
+site_dir: docs/site
 
 theme:
   name: material
